@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HalderTV</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header id="header">
+      <h1 class="logo">HalderTV</h1>
+      <div id="header-actions">
+        <button id="btn-hd" class="icon-btn" tabindex="0" aria-label="Toggle HD channels">HD</button>
+        <button id="btn-settings" class="icon-btn" tabindex="0" aria-label="Settings">&#9881;</button>
+        <button id="btn-refresh" class="icon-btn" tabindex="0" aria-label="Refresh channels">&#8635;</button>
+      </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div id="search-bar">
+      <input type="text" id="search-input" placeholder="Search channels..." autocomplete="off">
+      <div id="search-suggestions" class="hidden"></div>
+    </div>
+
+    <!-- Tab Bar -->
+    <nav id="tab-bar">
+      <button class="tab active" data-tab="categories">Categories</button>
+      <button class="tab" data-tab="all">All Channels</button>
+    </nav>
+
+    <!-- Main Browse View -->
+    <main id="browse-view" class="view active">
+      <aside id="category-sidebar">
+        <ul id="category-list"></ul>
+      </aside>
+      <section id="channel-grid">
+        <div id="channel-grid-inner"></div>
+      </section>
+    </main>
+
+    <!-- Player View -->
+    <div id="player-view" class="view">
+      <video id="video-player" autoplay playsinline></video>
+      <div id="player-controls">
+        <div id="epg-overlay">
+          <h2 id="epg-channel-name"></h2>
+          <div id="epg-current"><span id="epg-current-label">NOW</span> <span id="epg-current-title"></span></div>
+          <div id="epg-current-time" class="epg-time"></div>
+          <div id="epg-next"><span id="epg-next-label">NEXT</span> <span id="epg-next-title"></span></div>
+          <div id="epg-next-time" class="epg-time"></div>
+        </div>
+        <button id="btn-back" class="icon-btn control-btn" tabindex="0" aria-label="Back">&#9664; Back</button>
+        <span id="buffering-indicator" class="hidden">Buffering...</span>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Settings</h2>
+        <label>Master Playlist URL (All Channels)
+          <input type="url" id="setting-m3u-url" placeholder="https://iptv-org.github.io/iptv/countries/in.m3u">
+        </label>
+        <label>EPG URL (XMLTV)
+          <input type="url" id="setting-epg-url" placeholder="Leave blank for no EPG">
+        </label>
+        <label>Buffer Size
+          <select id="setting-buffer">
+            <option value="small">Small (Low Latency)</option>
+            <option value="medium" selected>Medium (Balanced)</option>
+            <option value="large">Large (Stable)</option>
+          </select>
+        </label>
+
+        <div class="modal-actions">
+          <button id="btn-save-settings" class="btn primary" tabindex="0">Save & Close</button>
+          <button id="btn-close-settings" class="btn" tabindex="0">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading / Error Overlay -->
+    <div id="loading-overlay" class="modal hidden">
+      <div class="modal-content"><p id="loading-text">Loading channels...</p></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="js/app.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/epg.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
